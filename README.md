@@ -1,2 +1,2 @@
 # advent-of-code-2017
-Advent of code 2017 result
+Advent of code 2017 solutions in python
