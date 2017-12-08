@@ -1,13 +1,39 @@
-input_data = [[5, 1, 9, 5], [7, 5, 3], [2, 4, 6, 8]]
-expect_value = 18
+from itertools import permutations
 
-result_per_line = []
-for element in input_data:
-    min_value = min(element)
-    max_value = max(element)
-    result_per_line.append(max_value-min_value)
+# part 1
+with open("data.txt", "r") as input_data:
+    result_part_one = []
+    for line in input_data:
+        elements = map(int, line.split())
+        try:
+            min_value = min(elements)
+            max_value = max(elements)
+            result_part_one.append(max_value - min_value)
+        except ValueError:
+            pass
 
-try:
-    assert expect_value == sum(result_per_line)
-except AssertionError:
-    print "Error in your code"
+print('Answer', sum(result_part_one))
+
+def check_number(line):
+    answer = []
+    for a,b in permutations(line, 2):
+        if (a % b == 0):
+            if (a < b):
+                answer.append(b/a)
+            else:
+                answer.append(a/b)
+    return sum(answer)
+
+
+result_part_two = []
+
+with open("data.txt", "r") as input_data:
+    result_part_one = []
+    for line in input_data:
+        elements = map(int, line.split())
+        try:
+            result_part_two.append(check_number(elements))
+        except ValueError:
+            pass
+
+print("Answer", sum(result_part_two))
